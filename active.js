@@ -39,16 +39,15 @@ var isLockArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function tokenClick(index) {
     ele = document.getElementById("token" + index);
-    ele.style.backgroundColor = "white";
-    ele.style.borderColor = "white";
-    ele.disabled = "true";
+    ele.style.display = "none";
+    ele.disabled = true;
     isActiveArray[index] = 0;
     toLock = getToLockButtons(index);
     console.log('toLock', toLock);
     for(i = 0; i < toLock.length; i++){
         ele = document.getElementById("token" + toLock[i]); 
         if(isActiveArray[toLock[i]] == 1){
-            ele.disabled = "true";
+            ele.disabled = true;
             isLockArray[toLock[i]] = 1;
         }
     }
@@ -58,9 +57,8 @@ function tokenClick(index) {
 
 function machineClick(index){
     ele = document.getElementById("token" + index);
-    ele.style.backgroundColor = "white";
-    ele.style.borderColor = "white";
-    ele.disabled = "true";
+    ele.style.display = "none";
+    ele.disabled = true;
     isActiveArray[index] = 0;
 }
 
@@ -79,14 +77,11 @@ function getToLockButtons(index){
 function unLock(){
     for(i = 0; i < 16; i++){
         ele = document.getElementById("token" + i); 
-        if(isActiveArray[toLock[i]] == 1){
-            console.log('toLock[i]', toLock[i]);
-            ele.disabled = false;
-            console.log("ele.disabled",ele.disabled);
-        }
+        ele.disabled = false;
+        console.log("token", i, "ele.disabled",ele.disabled);
     }
-    isLockArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
+
 
 function isActive(index) {
     return isActiveArray[index];
@@ -108,15 +103,13 @@ function updateTokens(row, amnt){
     console.log('disabled', disabled);
     var trueEnd = (disabled.length + end - increase);
     var count = 0;
-    unLock();
-    console.log('isLockArray 1', isLockArray);
     for(i = start; i < trueEnd; i++){
         if(disabled.includes(i) == false){
             count++;
             setTimeout(machineClick, 300*count, i);
         }
     }
-    unLock();
+    console.log('isLockArray 1', isLockArray);
 }
 
 function countReturn() {
