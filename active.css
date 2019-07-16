@@ -12,6 +12,15 @@
     right: 10px;
 }
 
+#newGameButton{
+    background-color: white;
+    border-radius: 5px;  
+
+    position: fixed;
+    top: 200px;
+    right: 10px;
+}
+
 #tokens button{
     border-radius: 5px;
     border: 3px solid white;

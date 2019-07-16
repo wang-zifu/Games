@@ -2,6 +2,7 @@ function UpdatePlayArea() {
     newHTML = generateHTMLTags();
     document.getElementById("playArea").innerHTML = newHTML;
     setTimeout(setCSSPosition(), 100);
+    isActiveArray = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 }
 
 function generateHTMLTags() {
@@ -51,6 +52,7 @@ function tokenClick(index) {
             isLockArray[toLock[i]] = 1;
         }
     }
+    setTimeout(isGameOver(), 500);
     console.log('isLockArray', isLockArray);
     console.log('clicked');
 }
@@ -139,11 +141,13 @@ function countReturn() {
 }
 
 var turnNum = 1;
+var turnNum2 = 3;
 var subturn = 0;
 
 function onClick(){
     subturn++;
     ele = document.getElementById("turnButton");
+    ele2 = document.getElementById("newGameButton");
     color = getColorings(turnNum);
     console.log('turn num 1', turnNum);
     console.log("new color", color);
@@ -152,6 +156,9 @@ function onClick(){
     ele.style.color = getColorings(turnNum);
     ele.style.backgroundColor = "white";
     ele.style.borderColor = getColorings(turnNum);
+    ele2.style.color = getColorings(turnNum2);
+    ele2.style.backgroundColor = "white";
+    ele2.style.borderColor = getColorings(turnNum2);
     nextMove();
 }
 
@@ -179,6 +186,7 @@ function nextMove() {
     console.log('turn num 2', turnNum);
     subturn++;
     turnNum++;
+    turnNum2++;
     console.log('turn num', turnNum);
     var counters = countReturn();
     bCount1 = (counters['row1'] + 8).toString(2);
